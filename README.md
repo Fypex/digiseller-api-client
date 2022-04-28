@@ -2,4 +2,4 @@
 
 [Packagist](https://packagist.org/packages/fypex/digiseller-api-client)
 
-[Docs](https://www.gamivo.com/api-documentation/public)
+[Docs](https://my.digiseller.com/inside/api.asp)
