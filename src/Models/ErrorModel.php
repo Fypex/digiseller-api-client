@@ -2,12 +2,12 @@
 
 namespace Fypex\DigisellerClient\Models;
 
-class ErrorModel
+class ErrorModel extends Model
 {
 
-    private $code;
-    private $message;
-    private $reason;
+    protected $code;
+    protected $message;
+    protected $reason;
 
     public function __construct($error)
     {

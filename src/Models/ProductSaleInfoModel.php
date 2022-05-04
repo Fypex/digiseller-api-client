@@ -2,37 +2,37 @@
 
 namespace Fypex\DigisellerClient\Models;
 
-class ProductSaleInfoModel
+class ProductSaleInfoModel extends Model
 {
 
     /**
      * @var mixed
      */
-    private $common_base_price;
+    protected $common_base_price;
     /**
      * @var mixed
      */
-    private $common_price_usd;
+    protected $common_price_usd;
     /**
      * @var mixed
      */
-    private $common_price_rur;
+    protected $common_price_rur;
     /**
      * @var mixed
      */
-    private $common_price_eur;
+    protected $common_price_eur;
     /**
      * @var mixed
      */
-    private $common_price_uah;
+    protected $common_price_uah;
     /**
      * @var mixed
      */
-    private $sale_end;
+    protected $sale_end;
     /**
      * @var mixed
      */
-    private $sale_percent;
+    protected $sale_percent;
 
     public function __construct($data)
     {

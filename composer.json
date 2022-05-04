@@ -23,6 +23,7 @@
     "php-http/message": "^1.7",
     "php-http/message-factory": "^1.0",
     "psr/http-message": "^1.0",
+    "symfony/cache": "^5.4",
     "symfony/http-client": "^5.3",
     "zendframework/zend-diactoros": "^2.1",
     "ext-curl": "*"
@@ -30,5 +31,8 @@
   "config": {
     "sort-packages": true,
     "secure-http": false
+  },
+  "require-dev": {
+    "larapack/dd": "^1.1"
   }
 }

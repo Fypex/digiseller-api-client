@@ -2,10 +2,10 @@
 
 namespace Fypex\DigisellerClient\Models;
 
-class Price
+class Price extends Model
 {
 
-    private $price;
+    protected $price;
 
     public function __construct(float $price)
     {

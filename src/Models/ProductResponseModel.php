@@ -2,92 +2,96 @@
 
 namespace Fypex\DigisellerClient\Models;
 
-class ProductResponseModel
+class ProductResponseModel extends Model
 {
 
-    private $id;
-    private $name;
-    private $description;
+    protected $id;
+    protected $name;
+    protected $description;
     /**
      * @var mixed
      */
-    private $add_info;
+    protected $add_info;
     /**
      * @var mixed
      */
-    private $currency;
+    protected $currency;
     /**
      * @var mixed
      */
-    private $cnt_sell;
+    protected $cnt_sell;
     /**
      * @var mixed
      */
-    private $price;
+    protected $price;
     /**
      * @var mixed
      */
-    private $cnt_sell_hidden;
+    protected $cnt_sell_hidden;
     /**
      * @var mixed
      */
-    private $cnt_return;
+    protected $cnt_return;
     /**
      * @var mixed
      */
-    private $cnt_return_hidden;
+    protected $cnt_return_hidden;
     /**
      * @var mixed
      */
-    private $cnt_goodresponses;
+    protected $cnt_goodresponses;
     /**
      * @var mixed
      */
-    private $cnt_goodresponses_hidden;
+    protected $cnt_goodresponses_hidden;
     /**
      * @var mixed
      */
-    private $cnt_badresponses;
+    protected $cnt_badresponses;
     /**
      * @var mixed
      */
-    private $cnt_badresponses_hidden;
+    protected $cnt_badresponses_hidden;
     /**
      * @var mixed
      */
-    private $price_usd;
+    protected $price_usd;
     /**
      * @var mixed
      */
-    private $price_rur;
+    protected $price_rur;
     /**
      * @var mixed
      */
-    private $price_eur;
+    protected $price_eur;
     /**
      * @var mixed
      */
-    private $price_uah;
+    protected $price_uah;
     /**
      * @var mixed
      */
-    private $in_stock;
+    protected $in_stock;
+    /**
+     * @var int
+     */
+    protected $num_in_stock;
     /**
      * @var mixed
      */
-    private $commiss_agent;
+    protected $commiss_agent;
     /**
      * @var mixed
      */
-    private $release_date;
+    protected $release_date;
     /**
      * @var mixed
      */
-    private $has_discount;
+    protected $has_discount;
     /**
      * @var mixed
      */
-    private $sale_info;
+    protected $sale_info;
 
 
     public function __construct($data)
@@ -114,6 +118,8 @@ class ProductResponseModel
         $this->price_uah = new Price($data['price_uah']);
 
         $this->in_stock = $data['in_stock'];
+        $this->num_in_stock = $data['num_in_stock'] ?? 0;
+
         $this->commiss_agent = $data['commiss_agent'];
         $this->has_discount = $data['has_discount'];
         $this->release_date = $data['release_date'];
@@ -273,6 +279,13 @@ class ProductResponseModel
         return $this->in_stock;
     }
 
+    /**
+     * @return int
+     */
+    public function getNumInStock(): int
+    {
+        return $this->num_in_stock;
+    }
     /**
      * @return mixed
      */
