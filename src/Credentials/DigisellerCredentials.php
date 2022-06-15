@@ -2,8 +2,6 @@
 
 namespace Fypex\DigisellerClient\Credentials;
 
-use JetBrains\PhpStorm\Pure;
-
 class DigisellerCredentials
 {
 

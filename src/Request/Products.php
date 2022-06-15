@@ -13,19 +13,17 @@ use Fypex\DigisellerClient\Exception\GeneralException;
 use Fypex\DigisellerClient\Filters\ProductsFilter;
 use Fypex\DigisellerClient\Models\Key;
 use Fypex\DigisellerClient\Models\ProductResponseModel;
+use Fypex\DigisellerClient\Models\Products\UpdateProduct;
 use Fypex\DigisellerClient\Models\RemoveContentResponseModel;
 use Fypex\DigisellerClient\Models\UploadKeysResponseModel;
+use Fypex\DigisellerClient\Traits\TUrls;
 use Http\Client\HttpClient;
 use Psr\Http\Client\ClientExceptionInterface;
-use function Couchbase\defaultDecoder;
 
 class Products extends DigisellerClient
 {
 
-    private $get_products = '/seller-goods';
-    private $upload_products = 'product/content/add/text?token={token}';
-    private $delete_content = 'product/content/delete/all?productid={product_id}&token={token}';
-
+    use TUrls;
 
     public function __construct(DigisellerCredentials $credentials, ?HttpClient $client = null)
     {
@@ -69,6 +67,56 @@ class Products extends DigisellerClient
         return (new ProductsDenormalizer())->denormalize($data);
 
     }
+
+    public function updateProduct(UpdateProduct $model): bool
+    {
+
+        $params = [
+            "enabled" => $model->getEnabled()
+        ];
+
+        $uri = Digiseller::DEFAULT_URL.str_replace([
+                '{product_id}',
+                '{token}'
+            ], [
+                $model->getProductId(),
+                $this->token
+            ], $this->toggle_product);
+
+        $request = $this->messageFactory->createRequest(
+            'POST',
+            $uri,
+            $this->getHeaders(),
+            json_encode($params)
+        );
+
+        $response = $this->client->sendRequest($request);
+
+        $result = $this->handleResponse($response);
+
+        if (empty($result['errors'])) {
+            return true;
+        }
+
+        return false;
+    }
+
+//    public function getDescription($product_id): array
+//    {
+//
+//        $uri = Digiseller::DEFAULT_URL.str_replace('{product_id}', $product_id, $this->product_description);
+//
+//        $request = $this->messageFactory->createRequest(
+//            'GET',
+//            $uri,
+//            $this->getHeaders(),
+//        );
+//
+//        $response = $this->client->sendRequest($request);
+//
+//        return $this->handleResponse($response);
+//
+//    }
 
     /**
      * @param int $product_id
